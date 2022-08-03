@@ -22,6 +22,7 @@ const colorChanger = () => {
 
 const colorStop = () => {
     clearInterval(bgChange);
+    btnStart.disabled = false;
 };
 
 btnStart.addEventListener("click", () => {
@@ -29,10 +30,4 @@ btnStart.addEventListener("click", () => {
     btnStart.disabled = true;
 });
 
-btnStop.addEventListener("click", () => {
-    colorStop();
-    btnStart.disabled = false;
-});
-
-
-console.log(bgChange);
+btnStop.addEventListener("click", colorStop);
