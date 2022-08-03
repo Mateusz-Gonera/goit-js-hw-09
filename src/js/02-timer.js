@@ -4,15 +4,15 @@ import Notiflix from 'notiflix';
 
 const timer = document.querySelector(".timer");
 const value = Array.from(document.querySelectorAll("span.value"));
-const label = Array.from(document.querySelectorAll(".label"));
-const field = Array.from(document.querySelectorAll("div.field"));
+const labels = Array.from(document.querySelectorAll(".label"));
+const fields = Array.from(document.querySelectorAll("div.field"));
 const input = document.querySelector("input#datetime-picker");
 const startBtn = document.querySelector(`button[data-start]`);
 
 timer.style.display = "flex";
 
-for (const fields of field) {
-    fields.style.marginRight = "20px";
+for (const field of fields) {
+    field.style.marginRight = "20px";
 };
 for (const values of value) {
     values.style.display = "block";
@@ -21,12 +21,12 @@ for (const values of value) {
     values.style.lineHeight = "1.5";    
 
 };
-for (const labels of label) {
-    labels.style.display = "block";
-    labels.style.textAlign = "center";
-    labels.style.fontSize = "20px";
-    labels.style.textTransform = "uppercase";
-    labels.style.lineHeight = "0.2";    
+for (const label of labels) {
+    label.style.display = "block";
+    label.style.textAlign = "center";
+    label.style.fontSize = "20px";
+    label.style.textTransform = "uppercase";
+    label.style.lineHeight = "0.2";    
 };
 
 startBtn.disabled = true;
@@ -38,15 +38,14 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
     onClose(selectedDates) {
-    const todayDate = new Date();
-    if (selectedDates[0].getTime() <= todayDate.getTime()) {
+    if (selectedDates[0].getTime() <= options.defaultDate.getTime()) {
         startBtn.disabled = true;
-        Notiflix.Notify.failure("Please choose a date in the future", {width: "500px"});
+      Notiflix.Notify.failure("Please choose a date in the future", { width: "500px" });
     };
-    if (selectedDates[0].getTime() > todayDate.getTime()) {
+      if (selectedDates[0].getTime() > options.defaultDate.getTime()) {
         startBtn.disabled = false;
-        console.log(selectedDates[0]);
-        localStorage.setItem("selectedDate", `${selectedDates[0].getTime()}`);
+      localStorage.setItem("selectedDate", `${selectedDates[0].getTime()}`);
+        console.log(localStorage);
     };    
   },
 };
@@ -55,8 +54,9 @@ flatpickr(input, options);
 
 const selectDate = localStorage.getItem("selectedDate");
 const dateToday = new Date();
-const tDate = dateToday.getTime(); 
-const ms = selectDate - tDate;
+const getDatet = dateToday.getTime(); 
+const ms = selectDate - getDatet;
+
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -77,9 +77,18 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
+function addLeadingZero(value) {
+  if (value.length === 1) {
+
+  }
+};
+
 startBtn.addEventListener("click", () => {
     const objDate = convertMs(ms);
-    
+  console.log(`${objDate.days}`);
 })
 
+// const str1 = '5';
+
+// console.log(str1.padStart(2, '0'));
 
