@@ -1,5 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from 'notiflix';
 
 const timer = document.querySelector(".timer");
 const value = Array.from(document.querySelectorAll("span.value"));
@@ -40,18 +41,45 @@ const options = {
     const todayDate = new Date();
     if (selectedDates[0].getTime() <= todayDate.getTime()) {
         startBtn.disabled = true;
-        window.alert("Please choose a date in the future");
+        Notiflix.Notify.failure("Please choose a date in the future", {width: "500px"});
     };
     if (selectedDates[0].getTime() > todayDate.getTime()) {
         startBtn.disabled = false;
         console.log(selectedDates[0]);
+        localStorage.setItem("selectedDate", `${selectedDates[0].getTime()}`);
     };    
   },
 };
 
 flatpickr(input, options);
 
+const selectDate = localStorage.getItem("selectedDate");
+const dateToday = new Date();
+const tDate = dateToday.getTime(); 
+const ms = selectDate - tDate;
+
+function convertMs(ms) {
+  // Number of milliseconds per unit of time
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  // Remaining days
+  const days = Math.floor(ms / day);
+  // Remaining hours
+  const hours = Math.floor((ms % day) / hour);
+  // Remaining minutes
+  const minutes = Math.floor(((ms % day) % hour) / minute);
+  // Remaining seconds
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  
+  return { days, hours, minutes, seconds };
+}
+
+startBtn.addEventListener("click", () => {
+    const objDate = convertMs(ms);
+    
+})
 
 
-const date = new Date();
-console.log(date.getTime());
