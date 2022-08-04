@@ -52,10 +52,8 @@ const options = {
 
 flatpickr(input, options);
 
-const selectDate = localStorage.getItem("selectedDate");
-const dateToday = new Date();
-const getDatet = dateToday.getTime(); 
-const ms = selectDate - getDatet;
+
+
 
 
 function convertMs(ms) {
@@ -77,21 +75,26 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-function addLeadingZero(value) {
-  if (value.length === 1) {
-    value = value.padStart(2, '0');
+function addLeadingZero(num) {
+  if (`${num}`.length === 1) {
+    num = `${num}`.padStart(2, '0');
   } else {
-    value
+    `${num}`;
   }
 };
 
 startBtn.addEventListener("click", () => {
+  const selectDate = localStorage.getItem("selectedDate");
+const dateToday = new Date();
+const getDatet = dateToday.getTime(); 
+  const ms = selectDate - getDatet;
     const objDate = convertMs(ms);
   console.log(`${objDate.days}`);
 
 })
 
-// const str1 = '5';
+const str1 = 5;
+
 
 // console.log(str1.padStart(2, '0'));
-console.log(dataDays);
+console.log(addLeadingZero(str1));
