@@ -24,11 +24,9 @@ function createPromise(position, delay) {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  for (let i = 0; i < form.elements.amount.value; i += 1) {
-    
-    
-  }
-
+  
+  const firstSet = setTimeout(() => {console.log("first")}, form.elements.delay.value);
+  const timerSet = setInterval(() => { console.log("kolejne") }, form.elements.step.value);
   event.currentTarget.reset();
 })
 
