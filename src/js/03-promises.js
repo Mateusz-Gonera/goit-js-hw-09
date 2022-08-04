@@ -25,10 +25,15 @@ function createPromise(position, delay) {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   
-  const firstSet = setTimeout(() => {console.log("first")}, form.elements.delay.value);
-  const timerSet = setInterval(() => { console.log("kolejne") }, form.elements.step.value);
+  const firstSet = setTimeout(() => {
+    console.log("first")
+    timerSet = setInterval(() => {
+      console.log("kolejne")
+    }, Number(form.elements.step.value));
+  }, Number(form.elements.delay.value));
+  
   event.currentTarget.reset();
 })
 
 
-console.log(form.elements.amount.value);
+console.log();
