@@ -6,6 +6,9 @@ const timer = document.querySelector(".timer");
 const value = Array.from(document.querySelectorAll("span.value"));
 const labels = Array.from(document.querySelectorAll(".label"));
 const dataDays = document.querySelector("span[data-days]");
+const dataHours = document.querySelector("span[data-hours]");
+const dataMinutes = document.querySelector("span[data-minutes]");
+const dataSeconds = document.querySelector("span[data-seconds]");
 const fields = Array.from(document.querySelectorAll("div.field"));
 const input = document.querySelector("input#datetime-picker");
 const startBtn = document.querySelector(`button[data-start]`);
@@ -53,9 +56,6 @@ const options = {
 flatpickr(input, options);
 
 
-
-
-
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -84,13 +84,22 @@ function addLeadingZero(num) {
 };
 
 startBtn.addEventListener("click", () => {
-  const selectDate = localStorage.getItem("selectedDate");
-const dateToday = new Date();
-const getDatet = dateToday.getTime(); 
-  const ms = selectDate - getDatet;
+  const intFunction = () => {
+    const selectDate = localStorage.getItem("selectedDate");
+    const dateToday = new Date();
+    const getDatet = dateToday.getTime();
+    const ms = selectDate - getDatet;
     const objDate = convertMs(ms);
-  console.log(`${objDate.days}`);
-
+    const getSpan = () => {
+      dataDays.textContent = `${addLeadingZero(objDate.days)}`;
+      dataHours.textContent = `${addLeadingZero(objDate.hours)}`;
+      dataMinutes.textContent = `${addLeadingZero(objDate.minutes)}`;
+      dataSeconds.textContent = `${addLeadingZero(objDate.seconds)}`;
+    };
+    getSpan();
+  }
+  setInterval(intFunction, 1000);
 })
 
-
+// getSpan();
+// setInterval(getSpan, 1000);
