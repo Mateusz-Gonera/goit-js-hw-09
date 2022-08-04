@@ -15,6 +15,7 @@ const startBtn = document.querySelector(`button[data-start]`);
 
 input.style.width = "250px";
 input.style.fontSize = "20px";
+input.style.padding = "5px";
 startBtn.style.fontSize = "20px";
 startBtn.style.padding = "5px";
 
@@ -49,7 +50,7 @@ const options = {
     onClose(selectedDates) {
     if (selectedDates[0].getTime() <= options.defaultDate.getTime()) {
         startBtn.disabled = true;
-      Notiflix.Notify.failure("Please choose a date in the future", { width: "500px" });
+      Notiflix.Notify.failure("Please choose a date in the future", { width: "50vw" });
     };
       if (selectedDates[0].getTime() > options.defaultDate.getTime()) {
         startBtn.disabled = false;
