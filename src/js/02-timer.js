@@ -77,9 +77,9 @@ function convertMs(ms) {
 
 function addLeadingZero(num) {
   if (`${num}`.length === 1) {
-    num = `${num}`.padStart(2, '0');
+    return num = `${num}`.padStart(2, '0');
   } else {
-    `${num}`;
+    return `${num}`;
   }
 };
 
@@ -93,7 +93,7 @@ const getDatet = dateToday.getTime();
 
 })
 
-const str1 = 5;
+const str1 = 555;
 
 
 // console.log(str1.padStart(2, '0'));
