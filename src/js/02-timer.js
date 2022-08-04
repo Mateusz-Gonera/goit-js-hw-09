@@ -93,8 +93,4 @@ const getDatet = dateToday.getTime();
 
 })
 
-const str1 = 555;
 
-
-// console.log(str1.padStart(2, '0'));
-console.log(addLeadingZero(str1));
