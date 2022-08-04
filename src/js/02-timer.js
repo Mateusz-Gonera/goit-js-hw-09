@@ -5,6 +5,7 @@ import Notiflix from 'notiflix';
 const timer = document.querySelector(".timer");
 const value = Array.from(document.querySelectorAll("span.value"));
 const labels = Array.from(document.querySelectorAll(".label"));
+const dataDays = document.querySelector("span[data-days]");
 const fields = Array.from(document.querySelectorAll("div.field"));
 const input = document.querySelector("input#datetime-picker");
 const startBtn = document.querySelector(`button[data-start]`);
@@ -45,7 +46,6 @@ const options = {
       if (selectedDates[0].getTime() > options.defaultDate.getTime()) {
         startBtn.disabled = false;
       localStorage.setItem("selectedDate", `${selectedDates[0].getTime()}`);
-        console.log(localStorage);
     };    
   },
 };
@@ -79,16 +79,19 @@ function convertMs(ms) {
 
 function addLeadingZero(value) {
   if (value.length === 1) {
-
+    value = value.padStart(2, '0');
+  } else {
+    value
   }
 };
 
 startBtn.addEventListener("click", () => {
     const objDate = convertMs(ms);
   console.log(`${objDate.days}`);
+
 })
 
 // const str1 = '5';
 
 // console.log(str1.padStart(2, '0'));
-
+console.log(dataDays);
