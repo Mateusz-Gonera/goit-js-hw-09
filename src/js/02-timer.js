@@ -13,7 +13,13 @@ const fields = Array.from(document.querySelectorAll("div.field"));
 const input = document.querySelector("input#datetime-picker");
 const startBtn = document.querySelector(`button[data-start]`);
 
+input.style.width = "250px";
+input.style.fontSize = "20px";
+startBtn.style.fontSize = "20px";
+startBtn.style.padding = "5px";
+
 timer.style.display = "flex";
+timer.style.marginTop = "20px";
 
 for (const field of fields) {
     field.style.marginRight = "20px";
@@ -34,7 +40,6 @@ for (const label of labels) {
 };
 
 startBtn.disabled = true;
-
 
 const options = {
   enableTime: true,
@@ -90,16 +95,14 @@ startBtn.addEventListener("click", () => {
     const getDatet = dateToday.getTime();
     const ms = selectDate - getDatet;
     const objDate = convertMs(ms);
+    if (ms < 1000) { clearInterval(timerId); };
     const getSpan = () => {
       dataDays.textContent = `${addLeadingZero(objDate.days)}`;
       dataHours.textContent = `${addLeadingZero(objDate.hours)}`;
       dataMinutes.textContent = `${addLeadingZero(objDate.minutes)}`;
-      dataSeconds.textContent = `${addLeadingZero(objDate.seconds)}`;
+      dataSeconds.textContent = `${addLeadingZero(objDate.seconds)}`;      
     };
     getSpan();
-  }
-  setInterval(intFunction, 1000);
+      }
+  const timerId = setInterval(intFunction, 1000);
 })
-
-// getSpan();
-// setInterval(getSpan, 1000);
