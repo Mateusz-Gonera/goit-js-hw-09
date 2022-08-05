@@ -6,10 +6,14 @@ const btnStop = document.querySelector('button[data-stop]');
 btnStart.style.width = '150px';
 btnStart.style.height = '50px';
 btnStart.style.fontSize = '20px';
+btnStart.style.position = 'absolute';
+btnStart.style.left = '10vw';
 
 btnStop.style.width = '150px';
 btnStop.style.height = '50px';
 btnStop.style.fontSize = '20px';
+btnStop.style.position = 'absolute';
+btnStop.style.left = '25vw';
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
